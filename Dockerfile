@@ -26,8 +26,8 @@ RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl \
 RUN curl -sS https://getcomposer.org/installer | php --  --install-dir=/usr/local/bin --filename=composer
 
 COPY ./source /var/www/html/ 
-RUN composer install
-COPY ./script/ /var/www/html 
-RUN chmod 700 /var/www/html/clovis.sh 
-ENTRYPOINT [ "/var/www/html/clovis.sh" ]
+RUN composer install 
+COPY ./commands/ /var/www/html/ 
+RUN cd /var/www/html && ./config.sh
+
 CMD ["php","artisan","serve","--host=0.0.0.0"] 
