@@ -27,7 +27,4 @@ RUN curl -sS https://getcomposer.org/installer | php --  --install-dir=/usr/loca
 
 COPY ./source /var/www/html/ 
 RUN composer install 
-COPY ./commands/ /var/www/html/ 
-RUN cd /var/www/html && ./config.sh
-
 CMD ["php","artisan","serve","--host=0.0.0.0"] 
