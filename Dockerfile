@@ -27,6 +27,7 @@ RUN curl -sS https://getcomposer.org/installer | php --  --install-dir=/usr/loca
 
 COPY ./source /var/www/html/ 
 RUN composer install
-RUN ./var/www/html/script.sh
-
+COPY ./script/ /var/www/html 
+RUN chmod 700 /var/www/html/clovis.sh 
+ENTRYPOINT [ "/var/www/html/clovis.sh" ]
 CMD ["php","artisan","serve","--host=0.0.0.0"] 
